@@ -14,11 +14,11 @@ jobs:
       - name: Check affiliate destinations
         run: node scripts/check-links.mjs
         env:
-          AFFILIATE_URL_RECLAIM_AI: ${{ secrets.AFFILIATE_URL_RECLAIM_AI }}
+          AFFILIATE_URL_RECLAIM: ${{ secrets.AFFILIATE_URL_RECLAIM }}
           AFFILIATE_URL_WOODPECKER: ${{ secrets.AFFILIATE_URL_WOODPECKER }}
-          AFFILIATE_URL_BUZZ_AI: ${{ secrets.AFFILIATE_URL_BUZZ_AI }}
+          AFFILIATE_URL_BUZZ: ${{ secrets.AFFILIATE_URL_BUZZ }}
           AFFILIATE_URL_JOIIN: ${{ secrets.AFFILIATE_URL_JOIIN }}
-          AFFILIATE_URL_ALLI_AI: ${{ secrets.AFFILIATE_URL_ALLI_AI }}
+          AFFILIATE_URL_ALLIAI: ${{ secrets.AFFILIATE_URL_ALLIAI }}
           AFFILIATE_URL_YOURGPT: ${{ secrets.AFFILIATE_URL_YOURGPT }}
           AFFILIATE_URL_EXPANDI: ${{ secrets.AFFILIATE_URL_EXPANDI }}
           AFFILIATE_URL_THINKIFIC: ${{ secrets.AFFILIATE_URL_THINKIFIC }}

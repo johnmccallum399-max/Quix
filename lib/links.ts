@@ -1,5 +1,5 @@
 import 'server-only';
-import { PROGRAMS } from './programs';
+import { PROGRAMS } from './affiliate-data';
 
 /**
  * Server-only affiliate destinations. Kept out of the client bundle so the
@@ -7,14 +7,14 @@ import { PROGRAMS } from './programs';
  *
  * Replace the `ref=affiliate_id` values with your real tracking links, either
  * here or (preferred) via env vars named AFFILIATE_URL_<SLUG> with dashes as
- * underscores, e.g. AFFILIATE_URL_ALLI_AI. Env vars win over defaults.
+ * underscores, e.g. AFFILIATE_URL_ALLIAI. Env vars win over defaults.
  */
 const DEFAULT_DESTINATIONS: Record<string, string> = {
-  'reclaim-ai': 'https://reclaim.ai/?ref=affiliate_id',
+  reclaim: 'https://reclaim.ai/?ref=affiliate_id',
   woodpecker: 'https://woodpecker.co/?ref=affiliate_id',
-  'buzz-ai': 'https://buzz.ai/?ref=affiliate_id',
+  buzz: 'https://buzz.ai/?ref=affiliate_id',
   joiin: 'https://joiin.co/?ref=affiliate_id',
-  'alli-ai': 'https://alliai.com/?ref=affiliate_id',
+  alliai: 'https://alliai.com/?ref=affiliate_id',
   yourgpt: 'https://yourgpt.ai/?ref=affiliate_id',
   expandi: 'https://expandi.io/?ref=affiliate_id',
   thinkific: 'https://thinkific.com/?ref=affiliate_id',

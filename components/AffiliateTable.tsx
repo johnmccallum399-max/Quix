@@ -16,6 +16,7 @@ import {
   TrendingUp,
   X,
 } from 'lucide-react';
+import FtcBanner from './FtcBanner';
 import {
   CATEGORIES,
   PROGRAMS,
@@ -24,7 +25,7 @@ import {
   type CategoryFilter,
   type DurationType,
   type SortKey,
-} from '../lib/programs';
+} from '../lib/affiliate-data';
 
 /* -------------------------------------------------------------------------- */
 /*  Helpers                                                                   */
@@ -40,18 +41,6 @@ const monthlyPayoutPerReferral = (p: AffiliateProgram) => p.avgMonthlyValue * p.
 
 const durationLabel = (d: DurationType) =>
   d === 'lifetime' ? 'Lifetime' : d === 'capped12' ? '12-Month Capped' : 'Recurring (term unstated)';
-
-/** Serialises JSON for a <script> tag without allowing "</script>" or HTML comments to break out. */
-function safeJsonLd(data: unknown): string {
-  return JSON.stringify(data)
-    .replace(/</g, '\\u003c')
-    .replace(/>/g, '\\u003e')
-    .replace(/&/g, '\\u0026')
-    .split(String.fromCharCode(0x2028))
-    .join('\\u2028')
-    .split(String.fromCharCode(0x2029))
-    .join('\\u2029');
-}
 
 function buildComparison(program: AffiliateProgram, all: AffiliateProgram[]): string {
   const own = monthlyPayoutPerReferral(program);
@@ -114,7 +103,7 @@ function AffiliateCta({ program }: { program: AffiliateProgram }) {
           onClick={(e) => e.stopPropagation()}
           className="cursor-help rounded text-xs text-zinc-400 underline decoration-dotted underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
         >
-          (Sponsored Link)
+          (Sponsored)
         </span>
         <span
           id={tipId}
@@ -262,43 +251,6 @@ export default function AffiliateTable() {
   const mrr = referrals * calcTool.avgMonthlyValue * calcTool.commissionRate;
   const arr = mrr * 12;
 
-  const jsonLd = useMemo(
-    () => ({
-      '@context': 'https://schema.org',
-      '@type': 'ItemList',
-      name: 'B2B SaaS Affiliate Program Comparison',
-      description:
-        'Benchmark comparison of B2B SaaS affiliate programs by commission, cookie window and average account value.',
-      numberOfItems: PROGRAMS.length,
-      itemListElement: PROGRAMS.map((p, i) => ({
-        '@type': 'ListItem',
-        position: i + 1,
-        item: {
-          '@type': 'SoftwareApplication',
-          name: p.name,
-          applicationCategory: 'BusinessApplication',
-          applicationSubCategory: p.category,
-          operatingSystem: 'Web',
-          url: p.officialUrl,
-          description: `${p.tag}. Key features: ${p.features.join(', ')}.`,
-          featureList: p.features,
-          review: {
-            '@type': 'Review',
-            author: { '@type': 'Organization', name: 'Editorial Team' },
-            reviewRating: {
-              '@type': 'Rating',
-              ratingValue: p.rating,
-              bestRating: 5,
-              worstRating: 1,
-            },
-            reviewBody: p.verdict,
-          },
-        },
-      })),
-    }),
-    [],
-  );
-
   const toggle = (id: string) => setExpandedId((cur) => (cur === id ? null : id));
 
   const useInCalculator = (id: string) => {
@@ -309,13 +261,8 @@ export default function AffiliateTable() {
   return (
     <section
       aria-labelledby="affiliate-table-heading"
-      className="min-h-screen bg-zinc-950 text-zinc-100"
+      className="bg-zinc-950 text-zinc-100"
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
-      />
-
       <div className="mx-auto max-w-7xl px-4 py-8">
         {/* Header */}
         <header className="mb-8">
@@ -536,19 +483,8 @@ export default function AffiliateTable() {
           </p>
         </div>
 
-        {/* FTC disclosure — immediately above the table header */}
-        <div
-          role="note"
-          aria-label="Affiliate disclosure"
-          className="mb-4 rounded-lg border-l-4 border-amber-400 bg-amber-400/10 p-4 text-sm leading-relaxed text-amber-50"
-        >
-          <strong className="font-semibold text-amber-300">
-            Transparency &amp; Earnings Disclosure:
-          </strong>{' '}
-          We independently review and benchmark business software. When you sign up through our
-          links, we may earn an affiliate commission at no additional cost to you. Commissions never
-          impact our editorial evaluations.
-        </div>
+        {/* FTC disclosure: immediately above the table header */}
+        <FtcBanner />
 
         {filtered.length === 0 ? (
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-10 text-center">

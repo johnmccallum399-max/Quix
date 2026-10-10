@@ -4,7 +4,7 @@
 
 export type Category =
   | 'AI & Productivity'
-  | 'Sales & Cold Outreach'
+  | 'Sales & Outreach'
   | 'FinTech & Reporting'
   | 'SEO & Search'
   | 'Course & Community';
@@ -47,7 +47,7 @@ export interface AffiliateProgram {
 export const CATEGORIES: CategoryFilter[] = [
   'All Tools',
   'AI & Productivity',
-  'Sales & Cold Outreach',
+  'Sales & Outreach',
   'FinTech & Reporting',
   'SEO & Search',
   'Course & Community',
@@ -55,14 +55,14 @@ export const CATEGORIES: CategoryFilter[] = [
 
 export const SORT_OPTIONS: { value: SortKey; label: string }[] = [
   { value: 'commission', label: 'Highest Commission' },
-  { value: 'cookie', label: 'Longest Cookie Window' },
+  { value: 'cookie', label: 'Longest Cookie' },
   { value: 'rating', label: 'Top Rated' },
-  { value: 'payout', label: 'Estimated Monthly Payout' },
+  { value: 'payout', label: 'Estimated Monthly Value' },
 ];
 
 export const PROGRAMS: AffiliateProgram[] = [
   {
-    id: 'reclaim-ai',
+    id: 'reclaim',
     name: 'Reclaim.ai',
     category: 'AI & Productivity',
     commissionLabel: '25% - 40% Recurring (12 Mos)',
@@ -90,7 +90,7 @@ export const PROGRAMS: AffiliateProgram[] = [
   {
     id: 'woodpecker',
     name: 'Woodpecker.co',
-    category: 'Sales & Cold Outreach',
+    category: 'Sales & Outreach',
     commissionLabel: '20% Lifetime Recurring',
     commissionRate: 0.2,
     durationType: 'lifetime',
@@ -113,9 +113,9 @@ export const PROGRAMS: AffiliateProgram[] = [
     ],
   },
   {
-    id: 'buzz-ai',
+    id: 'buzz',
     name: 'Buzz.ai',
-    category: 'Sales & Cold Outreach',
+    category: 'Sales & Outreach',
     commissionLabel: '30% Recurring (12 Mos)',
     commissionRate: 0.3,
     durationType: 'capped12',
@@ -163,7 +163,7 @@ export const PROGRAMS: AffiliateProgram[] = [
     ],
   },
   {
-    id: 'alli-ai',
+    id: 'alliai',
     name: 'Alli AI',
     category: 'SEO & Search',
     commissionLabel: '20% Recurring (12 Mos)',
@@ -215,7 +215,7 @@ export const PROGRAMS: AffiliateProgram[] = [
   {
     id: 'expandi',
     name: 'Expandi',
-    category: 'Sales & Cold Outreach',
+    category: 'Sales & Outreach',
     commissionLabel: '20% - 30% Recurring (12 Mos)',
     commissionRate: 0.3,
     durationType: 'capped12',
@@ -264,3 +264,11 @@ export const PROGRAMS: AffiliateProgram[] = [
   },
 ];
 
+
+export function getProgramBySlug(slug: string): AffiliateProgram | undefined {
+  return PROGRAMS.find((p) => p.id === slug);
+}
+
+export function getAllCategories(): CategoryFilter[] {
+  return CATEGORIES;
+}

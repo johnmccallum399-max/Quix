@@ -26,6 +26,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               Full disclosure
             </Link>
           </p>
+          <nav aria-label="Legal" className="mt-3 flex justify-center gap-4">
+            <Link href="/privacy" className="hover:text-zinc-200">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-zinc-200">
+              Terms
+            </Link>
+            <Link href="/disclosure" className="hover:text-zinc-200">
+              Affiliate Disclosure
+            </Link>
+          </nav>
         </footer>
       </body>
     </html>

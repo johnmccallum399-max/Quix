@@ -3,7 +3,7 @@
 ## What is in this repo
 | Path | Purpose |
 |---|---|
-| `lib/programs.ts` | Single source of truth for the 8 programs (public data) |
+| `lib/affiliate-data.ts` | Single source of truth for the 8 programs (public data) |
 | `lib/links.ts` | Server-only affiliate destinations, UTM allow-list, disabled-program switch |
 | `components/AffiliateTable.tsx` | Comparison table, ROI calculator, FTC banner, JSON-LD |
 | `app/go/[slug]/route.ts` | Cloaked redirect `/go/<slug>`, forwards `utm_*` only, `noindex` |
