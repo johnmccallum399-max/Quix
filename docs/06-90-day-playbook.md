@@ -12,7 +12,7 @@
 | 4 | Apply to the direct programs: Reclaim.ai, Woodpecker, Buzz.ai, Joiin, Alli AI, YourGPT, Thinkific, Expandi. Use your real site and an honest description |
 | 5 | Create PartnerStack and any network accounts that host these programs (check which vendors use which network); complete tax/payout profiles |
 | 6 | Sign up to each tool for a trial; log the exact terms on the affiliate page with date in a sheet (commission, cookie, payout threshold, restrictions) |
-| 7 | Update `lib/programs.ts` with verified terms; fix any wrong numbers |
+| 7 | Update `lib/affiliate-data.ts` with verified terms; fix any wrong numbers |
 | 8 | Paste approved links into env vars; test every `/go/` link; run `npm run check-links` |
 | 9 | Set up Systeme.io: sending domain DNS (SPF/DKIM/DMARC), double opt-in form, thank-you page |
 | 10 | Build the 4 workflows in Make.com, test with real data, export (strip secrets) |
